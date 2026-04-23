@@ -12,6 +12,10 @@ body {
   color: var(--cor-texto);
 }
 
+* {
+  text-transform: uppercase;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
