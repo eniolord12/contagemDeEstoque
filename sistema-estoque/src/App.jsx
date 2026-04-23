@@ -24,6 +24,10 @@ function App() {
 
   // Estados para pesquisa e formulário
   const [termoPesquisa, setTermoPesquisa] = useState('')
+  const [filtroId, setFiltroId] = useState('')
+  const [filtroNome, setFiltroNome] = useState('')
+  const [filtroCodigo, setFiltroCodigo] = useState('')
+  const [filtroMarca, setFiltroMarca] = useState('')
   const [novaPeca, setNovaPeca] = useState({
     nome: '',
     codigo: '',
@@ -38,12 +42,18 @@ function App() {
   // Função para lidar com a pesquisa
   const pecasFiltradas = pecas.filter(peca => {
     const termo = termoPesquisa.toLowerCase();
-    return (
+    const idMatch = filtroId === '' || String(peca.id).toLowerCase().includes(filtroId.toLowerCase());
+    const nomeMatch = filtroNome === '' || peca.nome.toLowerCase().includes(filtroNome.toLowerCase());
+    const codigoMatch = filtroCodigo === '' || peca.codigo.toLowerCase().includes(filtroCodigo.toLowerCase());
+    const marcaMatch = filtroMarca === '' || (peca.marca && peca.marca.toLowerCase().includes(filtroMarca.toLowerCase()));
+    // Pesquisa geral OU todos os filtros individuais
+    const pesquisaGeral =
+      termo === '' ||
       String(peca.id).toLowerCase().includes(termo) ||
       peca.nome.toLowerCase().includes(termo) ||
       peca.codigo.toLowerCase().includes(termo) ||
-      (peca.marca && peca.marca.toLowerCase().includes(termo))
-    );
+      (peca.marca && peca.marca.toLowerCase().includes(termo));
+    return pesquisaGeral && idMatch && nomeMatch && codigoMatch && marcaMatch;
   });
 
   // Função para adicionar nova peça
@@ -114,11 +124,42 @@ function App() {
             <h2>Estoque Atual</h2>
             <input
               type="search"
-              placeholder="Pesquisar por nome, código ou máquina..."
+              placeholder="Pesquisar geral (ID, Nome, Código, Marca...)"
               value={termoPesquisa}
               onChange={e => setTermoPesquisa(e.target.value)}
               className="input-pesquisa"
+              style={{ marginBottom: 8 }}
             />
+            <div style={{ display: 'flex', gap: 8, marginTop: 8, marginBottom: 8 }}>
+              <input
+                type="text"
+                placeholder="Filtrar por ID"
+                value={filtroId}
+                onChange={e => setFiltroId(e.target.value)}
+                style={{ width: 80 }}
+              />
+              <input
+                type="text"
+                placeholder="Filtrar por Nome"
+                value={filtroNome}
+                onChange={e => setFiltroNome(e.target.value)}
+                style={{ width: 180 }}
+              />
+              <input
+                type="text"
+                placeholder="Filtrar por Código"
+                value={filtroCodigo}
+                onChange={e => setFiltroCodigo(e.target.value)}
+                style={{ width: 120 }}
+              />
+              <input
+                type="text"
+                placeholder="Filtrar por Marca"
+                value={filtroMarca}
+                onChange={e => setFiltroMarca(e.target.value)}
+                style={{ width: 120 }}
+              />
+            </div>
           </div>
 
           <div className="tabela-container">
