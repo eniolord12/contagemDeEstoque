@@ -25,7 +25,6 @@ function App() {
   // Estados para pesquisa e formulário
   const [termoPesquisa, setTermoPesquisa] = useState('')
   const [novaPeca, setNovaPeca] = useState({
-    id: '',
     nome: '',
     codigo: '',
     quantidade: '',
@@ -69,13 +68,12 @@ function App() {
       setPecas([...pecas, pecaParaAdicionar])
     }
 
-    setNovaPeca({ id: '', nome: '', codigo: '', quantidade: '', preco: '', marca: '' })
+    setNovaPeca({ nome: '', codigo: '', quantidade: '', preco: '', marca: '' })
   }
 
   // Função para iniciar edição
   const editarPeca = (peca) => {
     setNovaPeca({
-      id: peca.id,
       nome: peca.nome,
       codigo: peca.codigo,
       quantidade: peca.quantidade,
@@ -101,7 +99,6 @@ function App() {
         <section className="painel-cadastro">
           <h2>Cadastrar Nova Peça</h2>
           <form onSubmit={adicionarOuEditarPeca} className="form-grid">
-            <input type="text" placeholder="ID" value={novaPeca.id} onChange={e => setNovaPeca({ ...novaPeca, id: e.target.value })} disabled={!!editandoId} />
             <input type="text" placeholder="Nome" value={novaPeca.nome} onChange={e => setNovaPeca({ ...novaPeca, nome: e.target.value })} required />
             <input type="text" placeholder="Código" value={novaPeca.codigo} onChange={e => setNovaPeca({ ...novaPeca, codigo: e.target.value })} required />
             <input type="number" placeholder="Qtd" value={novaPeca.quantidade} onChange={e => setNovaPeca({ ...novaPeca, quantidade: e.target.value })} />
