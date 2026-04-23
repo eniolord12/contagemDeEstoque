@@ -1,0 +1,129 @@
+:root {
+  --cor-primaria: #2563eb;
+  --cor-fundo: #f3f4f6;
+  --cor-texto: #1f2937;
+  --cor-borda: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header h1 {
+  color: var(--cor-primaria);
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--cor-borda);
+  padding-bottom: 10px;
+}
+
+.painel-cadastro,
+.painel-estoque {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 15px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.btn-salvar {
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+.btn-editar {
+  background-color: #f59e0b;
+  color: white;
+  margin-right: 8px;
+}
+
+.btn-excluir {
+  background-color: #ef4444;
+  color: white;
+}
+
+.cabecalho-estoque {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-pesquisa {
+  width: 300px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+th {
+  background-color: #f8fafc;
+}
+
+.tag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tag-verde {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.tag-amarela {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.msg-vazio {
+  text-align: center;
+  padding: 20px;
+  color: #6b7280;
+}
